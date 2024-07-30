@@ -57,10 +57,12 @@ export async function POST(req: Request) {
   const eventType = evt.type;
 //   console.log(`Webhook with and ID of ${id} and type of ${eventType}`)
 //   console.log('Webhook body:', body)
+  console.log(`Received event: ${eventType}`);
+  console.log('Webhook payload:', evt.data);
 
 if(eventType === 'user.created') {
     const { id, email_addresses, image_url, username, first_name, last_name } = evt.data;
-
+ 
     // Create a new user in your database
     const mongoUser = await createUser({
       clerkId: id,
