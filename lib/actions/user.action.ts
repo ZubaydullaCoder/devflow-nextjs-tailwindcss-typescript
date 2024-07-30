@@ -70,6 +70,8 @@ export async function deleteUser(params: DeleteUserParams) {
     connectToDatabase();
 
     const { clerkId } = params;
+    console.log(clerkId);
+    
 
     const user = await User.findOneAndDelete({ clerkId });
 
