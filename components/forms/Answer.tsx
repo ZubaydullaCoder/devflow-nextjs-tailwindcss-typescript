@@ -19,10 +19,11 @@ interface Props {
   authorId: string;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Answer = ({ question, questionId, authorId }: Props) => {
   const pathname = usePathname();
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmittingAI, setSetIsSubmittingAI] = useState(false);
+  // const [isSubmittingAI, setSetIsSubmittingAI] = useState(false);
   const { mode } = useTheme();
   const editorRef = useRef(null)
   const form = useForm<z.infer<typeof AnswerSchema>>({
@@ -57,39 +58,39 @@ const Answer = ({ question, questionId, authorId }: Props) => {
     }
   }
 
-  const generateAIAnswer = async () => {
-    if(!authorId) return;
+  // const generateAIAnswer = async () => {
+  //   if(!authorId) return;
 
-    setSetIsSubmittingAI(true);
+  //   setSetIsSubmittingAI(true);
 
-    try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/chatgpt`, { 
-        method: 'POST',
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ question })
-      })
+  //   try {
+  //     const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/chatgpt`, { 
+  //       method: 'POST',
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ question })
+  //     })
 
-      const aiAnswer = await response.json();
+  //     const aiAnswer = await response.json();
        
         
-      // Convert plain text to HTML format
+  //     // Convert plain text to HTML format
 
-      const formattedAnswer = aiAnswer.response.content.replace(/\n/g, '<br />');
+  //     const formattedAnswer = aiAnswer?.response?.content?.replace(/\n/g, '<br />');
 
-      if(editorRef.current) {
-        const editor = editorRef.current as any;
-        editor.setContent(formattedAnswer);
-      }
+  //     if(editorRef.current) {
+  //       const editor = editorRef.current as any;
+  //       editor.setContent(formattedAnswer);
+  //     }
 
-      // Toast...
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setSetIsSubmittingAI(false);
-    }
-  }
+  //     // Toast...
+  //   } catch (error) {
+  //     console.log(error);
+  //   } finally {
+  //     setSetIsSubmittingAI(false);
+  //   }
+  // }
 
   return (
     <div>
@@ -97,9 +98,9 @@ const Answer = ({ question, questionId, authorId }: Props) => {
         <h4 className="paragraph-semibold text-dark400_light800">Write your answer here</h4>
 
         <Button className="btn light-border-2 gap-1.5 rounded-md px-4 py-2.5 text-primary-500 shadow-none dark:text-primary-500"
-        onClick={generateAIAnswer}
+        // onClick={generateAIAnswer}
         >
-          {isSubmittingAI ? (
+          {/* {isSubmittingAI ? (
             <>
             Generating...
             </>
@@ -114,7 +115,15 @@ const Answer = ({ question, questionId, authorId }: Props) => {
               />
               Generate AI Answer
               </>
-            )}
+            )} */}
+             <Image 
+                src="/assets/icons/stars.svg"
+                alt="star"
+                width={12}
+                height={12}
+                className="object-contain"
+              />
+              Generate AI Answer
         </Button>
       </div>
 
