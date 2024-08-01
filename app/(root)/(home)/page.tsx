@@ -12,7 +12,7 @@ import Link from "next/link";
 
 import type { Metadata } from 'next';
 import { auth } from "@clerk/nextjs/server";
-import { Skeleton } from "@/components/ui/skeleton";
+
 
 
 export const metadata: Metadata = {
